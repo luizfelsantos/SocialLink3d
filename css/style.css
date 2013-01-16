@@ -74,6 +74,9 @@ a:hover{
 
 .content-github, .content-twitter{
     text-align: center;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     -webkit-transform: rotateY(180deg);
     -moz-transform: rotateY(180deg);
     -ms-transform: rotateY(180deg);
@@ -95,10 +98,10 @@ a:hover{
     content: "\e095";
 }
 .content-github{
-    padding: 100px 0;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+    padding: 80px 0;
+}
+.content-twitter{
+    padding: 40px 0;
 }
 .content-github a{
     font-size: 22px;
