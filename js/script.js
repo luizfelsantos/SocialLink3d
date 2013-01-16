@@ -1,7 +1,9 @@
 /**
- *	
- * Copyright (C) 2013 Luiz Felipe, @felipe_web_dev
+ * Social Link 3d v1.0
+ * https://github.com/felipeluiz/SocialLink3d
+ * MIT LIcensed
  *
+ * Copyright (C) 2013 Luiz Felipe, @felipe_web_dev
  */
 
 (function(){
