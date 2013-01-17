@@ -11,7 +11,7 @@
 	var elementFront  = document.getElementsByClassName("front"),
 		numberItens = elementFront .length,
 		elementBack  = document.getElementsByClassName("back"),
-		sizeItem = elementFront [0].offsetWidth,
+		sizeItem = elementFront[0].offsetWidth,
 		vendors = ["Webkit","Moz","O","ms"];
 
 
@@ -21,18 +21,18 @@
 		var x = event.pageX,
 			y = event.pageY;
 
-		if(y >= elementFront [0].offsetTop - 100){
+		if(y >= elementFront[0].offsetTop - 100){
 			for(var i = 0; i < numberItens; i++){
-				if(x >= elementFront [i].offsetLeft-30 && x <= elementFront [i].offsetLeft + sizeItem + 30){
+				if(x >= elementFront[i].offsetLeft-30 && x <= elementFront[i].offsetLeft + sizeItem + 30){
 					for(var j = 0; j < vendors.length; j++){
-						elementFront [i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (x-elementFront [i].offsetLeft+30) + "deg)";
+						elementFront[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (x-elementFront[i].offsetLeft+30) + "deg)";
 
-						elementBack [i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (x-elementFront [i].offsetLeft+210) + "deg)";
+						elementBack[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (x-elementFront[i].offsetLeft+210) + "deg)";
 					}
 				}
 				else{
-					elementFront [i].setAttribute("style","");
-					elementBack [i].setAttribute("style","");
+					elementFront[i].setAttribute("style","");
+					elementBack[i].setAttribute("style","");
 				}
 			}
 		}
