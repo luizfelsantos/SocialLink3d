@@ -40,7 +40,7 @@ a:hover{
     opacity: .5;
 }
 
-.github, .twitter, .content-github, .content-twitter{
+.front, .back{
     position: absolute;
     top: 50%;
     margin-top: -150px;
