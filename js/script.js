@@ -13,7 +13,9 @@
 		elementBack = document.getElementsByClassName("back"),
 		sizeItem = elementFront[0].offsetWidth,
 		vendors = ["Webkit","Moz","O","ms"],
-		vendorsLen = vendors.length;
+		vendorsLen = vendors.length,
+		spin = 360,
+		spinSpace = (spin - sizeItem)/2;
 
 	document.addEventListener("mousemove",rotate,false);
 
@@ -22,11 +24,11 @@
 
 		if(event.pageY >= elementFront[0].offsetTop - 100){
 			for(var i = 0; i < numberItens; i++){
-				if(mouseX >= elementFront[i].offsetLeft - 30 && mouseX <= elementFront[i].offsetLeft + sizeItem + 30){
+				if(mouseX >= elementFront[i].offsetLeft - spinSpace && mouseX <= elementFront[i].offsetLeft + sizeItem + spinSpace){
 					for(var j = 0; j < vendorsLen; j++){
-						elementFront[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (mouseX - elementFront[i].offsetLeft + 30) + "deg)";
+						elementFront[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (mouseX - elementFront[i].offsetLeft + spinSpace) + "deg)";
 
-						elementBack[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (mouseX - elementFront[i].offsetLeft + 210) + "deg)";
+						elementBack[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + (mouseX - elementFront[i].offsetLeft + (180 + spinSpace)) + "deg)";
 					}
 				}
 				else{
