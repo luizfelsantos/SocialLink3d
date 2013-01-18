@@ -64,15 +64,19 @@ a:hover{
     transform: rotateY(0);
 }
 .github, .content-github{
-    left: 35%;
-    margin-left: -120px;
+    left: 25%;
+    margin-left: -150px;
+}
+.facebook, .content-facebook{
+    left: 50%;
+    margin-left: -150px;
 }
 .twitter, .content-twitter{
-    right: 35%;
-    margin-right: -120px;
+    left: 75%;
+    margin-left: -150px;
 }
 
-.content-github, .content-twitter{
+.content-github, .content-facebook, .content-twitter{
     text-align: center;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -84,7 +88,7 @@ a:hover{
     transform: rotateY(180deg);
 }
 
-.github:before, .twitter:before{
+.github:before, .facebook:before, .twitter:before{
     position: absolute;
     left: 50%;
     top: 50%;
@@ -94,11 +98,20 @@ a:hover{
 .github:before{
     content: "\e0ab";
 }
+.facebook:before{
+    content: "\e091";
+}
 .twitter:before{
     content: "\e095";
 }
 .content-github{
     padding: 80px 0;
+}
+.content-facebook{
+    padding: 100px 0;
+}
+.facebook-button{
+    margin-top: 10px;
 }
 .content-twitter{
     padding: 40px 0;
