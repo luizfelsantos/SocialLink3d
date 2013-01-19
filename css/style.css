@@ -57,11 +57,6 @@ a:hover{
     -webkit-backface-visibility: hidden;
     -moz-backface-visibility: hidden;
     backface-visibility: hidden;
-    -webkit-transform: rotateY(0);
-    -moz-transform: rotateY(0);
-    -ms-transform: rotateY(0);
-    -o-transform: rotateY(0);
-    transform: rotateY(0);
 }
 .github, .content-github{
     left: 25%;
@@ -119,4 +114,35 @@ a:hover{
 .content-github a{
     font-size: 22px;
     color: #fff;
+}
+
+.setRotate{
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    margin-left: -52px;
+    width: 100px;
+    padding: 5px 0;
+    background: #39536B;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.open{
+    -webkit-transition: all .4s;
+    -moz-transition: all .4s;
+    -ms-transition: all .4s;
+    -o-transition: all .4s;
+    transition: all .4s;
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    transform: rotateY(360deg);
+}
+.close{
+    -webkit-transform: rotateY(180deg);
+    -moz-transform: rotateY(180deg);
+    -ms-transform: rotateY(180deg);
+    -o-transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
