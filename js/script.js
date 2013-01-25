@@ -15,54 +15,74 @@
 		vendors = ["Webkit","Moz","O","ms"],
 		vendorsLen = vendors.length,
 		spinSpace = (360 - sizeItem)/2,
-		rotation = [].slice.call(document.getElementsByClassName("setRotate"));
+		buttonLock = [].slice.call(document.getElementsByClassName("setRotate"));
 
-	document.addEventListener("mousemove", rotate, false);
-	document.addEventListener("click", OnClick, false);
+	// variable by hakim.se
+	var supports3DTransforms =  'WebkitPerspective' in document.body.style ||
+								'MozPerspective' in document.body.style ||
+								'msPerspective' in document.body.style ||
+								'OPerspective' in document.body.style ||
+								'perspective' in document.body.style;
 
-	function rotate(event){
-		var mouseX = event.pageX;
+	if(supports3DTransforms){
 
-		if(event.pageY >= elementFront[0].offsetTop - 100){
-			for(var i = 0; i < numberItens; i++){
+		document.addEventListener("mousemove", rotate, false);
+		document.addEventListener("click", OnClick, false);
 
-				if(mouseX >= (elementFront[i].offsetLeft - spinSpace) &&
-					mouseX <= (elementFront[i].offsetLeft + sizeItem + spinSpace) &&
-					rotation[i].getAttribute("data-rotation") == "active"){
+		// estiliza o elemento com base na posição do mouse
+		function rotate(event){
+			var mouseX = event.pageX;
 
-					var posFront = (mouseX - elementFront[i].offsetLeft + spinSpace),
-						posBack = (mouseX - elementFront[i].offsetLeft + (180 + spinSpace));
+			if(event.pageY >= elementFront[0].offsetTop - 100){
+				for(var i = 0; i < numberItens; i++){
 
-					for(var j = 0; j < vendorsLen; j++){
-						elementFront[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + posFront + "deg)";
-						elementBack[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + posBack + "deg)";
+					if(mouseX >= (elementFront[i].offsetLeft - spinSpace) &&
+						mouseX <= (elementFront[i].offsetLeft + sizeItem + spinSpace) &&
+						buttonLock[i].getAttribute("data-rotation") == "active"){
+
+						var posFront = (mouseX - elementFront[i].offsetLeft + spinSpace),
+							posBack = (mouseX - elementFront[i].offsetLeft + (180 + spinSpace));
+
+						for(var j = 0; j < vendorsLen; j++){
+							elementFront[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + posFront + "deg)";
+							elementBack[i].style[vendors[j]+"Transform"] = "perspective(800px) rotateY(" + posBack + "deg)";
+						}
 					}
-				}
-				else{
-					elementFront[i].setAttribute("style","");
-					elementBack[i].setAttribute("style","");
+					else{
+						elementFront[i].setAttribute("style","");
+						elementBack[i].setAttribute("style","");
+					}
 				}
 			}
 		}
+
+		function OnClick(event){
+			var element = event.target,
+				index = buttonLock.indexOf(element);
+
+			if(buttonLock[index].getAttribute("data-rotation") == "active"){
+				applyStyle(element, index, "Unlock");
+			}
+			else{
+				applyStyle(element, index, "Lock");
+			}		
+		}
+
+		// avalia o atributo data dos botões de travamento decidindo se
+		// adiociona ou subtrai ao estilos, travando ou destravando a rotação
+		function applyStyle(element, i, text){
+			var state = buttonLock[i].getAttribute("data-rotation") == "active" ? "deactive" : "active";
+			buttonLock[i].setAttribute("data-rotation", state);
+			
+			element.innerHTML = text;
+
+			elementFront[i].classList.toggle("close");
+			elementBack[i].classList.toggle("open");
+		}
 	}
-
-	function OnClick(event){
-		var element = event.target,
-			index = rotation.indexOf(element);
-
-		if(rotation[index].getAttribute("data-rotation") == "active"){
-			rotation[index].setAttribute("data-rotation","deactive");
-			element.innerHTML = "Destravar";
-
-			elementFront[index].classList.add("close");
-			elementBack[index].classList.add("open");
-		}
-		else{
-			rotation[index].setAttribute("data-rotation","active");
-			element.innerHTML = "Travar";
-
-			elementFront[index].classList.remove("close");
-			elementBack[index].classList.remove("open");
-		}
+	else{
+		buttonLock.forEach(function(element, i){
+			element.style.display = "none";
+		});
 	}
 })();
