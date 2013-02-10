@@ -82,7 +82,7 @@
 	}
 	else{
 		buttonLock.forEach(function(element, i){
-			element.style.display = "none";
+			element.parentNode.removeChild(element);
 		});
 	}
 })();
